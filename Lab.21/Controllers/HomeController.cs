@@ -1,4 +1,5 @@
 ﻿using Lab._21.Models;
+using Lab._21.Models.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace Lab._21.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly CustomerContext _context = new CustomerContext();
+
         public ActionResult Index()
         {
-            return View();
+            var customers = _context.Registers;
+
+            return View(customers);
         }
 
         public ActionResult About()
@@ -39,6 +44,9 @@ namespace Lab._21.Controllers
 
             if (ModelState.IsValid)
             {
+                _context.Registers.Add(newRegister);
+                _context.SaveChanges();
+
                 TempData["UserName"] = newRegister.FirstName;
                 return RedirectToAction("Registered");
             }

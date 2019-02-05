@@ -13,7 +13,7 @@
     </h2>
 </div>
 
-<form action="/Home/Register" method="post">
+@*<form action="/Home/Register" method="post">
 
     <input type="text" name="FirstName" placeholder="First Name" /> <br /><br />
     <input type="text" name="LastName" placeholder="Last Name" /> <br /><br />
@@ -22,7 +22,48 @@
     <input type="text" name="Password" placeholder="Password" /> <br /><br />
     <input type="submit" class="btn-group" value="Register" />
 
-</form>
+</form>*@
+
+<div class="container">
+    <div class="row">
+
+        @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.LabelFor(x => x.FirstName)
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", placeholder = "Enter your first name" })
+                @Html.ValidationMessageFor(x => x.FirstName, "Please enter a valid first name.", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(x => x.LastName)
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", placeholder = "Enter your last name" })
+                @Html.ValidationMessageFor(x => x.LastName, "Please enter a valid last name.", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(x => x.Email)
+                @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Enter your email" })
+                @Html.ValidationMessageFor(x => x.Email, "Please enter a valid email", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(x => x.PhoneNumber)
+                @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", placeholder = "Enter your phone number" })
+                @Html.ValidationMessageFor(x => x.PhoneNumber, "Please enter a valid phone number.", new { @class = "text-danger" })
+            </div>
+
+            <div>
+                @Html.LabelFor(x => x.Password)
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "Create a password" })
+                @Html.ValidationMessageFor(x => x.Password, "Please enter a valid password", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn-success">Submit</button>
+        }
+
+    </div>
+</div>
 
 @if (ViewBag.ErrorMessage != null)
 {
