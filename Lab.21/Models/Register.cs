@@ -9,6 +9,9 @@ namespace Lab._21.Models
 {
     public class Register
     {
+
+		// I'm enjoying your use of attributes here
+
         //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int CustomerID { get; set; }
